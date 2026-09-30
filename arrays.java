@@ -4,11 +4,12 @@
 // a1 - a2 + a3 - ... + (-1)^(n+1) * an;
 import java.util.Scanner;
 
+
 public class arrays {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Введите n: ");
-        double n = sc.nextDouble();
+        int n = sc.nextInt();
         double[] arr = new double[n];
         for (int i = 0; i < n; i++) {
             System.out.printf("Введите a[%d]: ", i + 1);
