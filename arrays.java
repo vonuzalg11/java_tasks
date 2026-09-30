@@ -8,7 +8,7 @@ public class arrays {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Введите n: ");
-        int n = sc.nextInt();
+        double n = sc.nextDouble();
         double[] arr = new double[n];
         for (int i = 0; i < n; i++) {
             System.out.printf("Введите a[%d]: ", i + 1);
