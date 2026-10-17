@@ -2,11 +2,15 @@
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class arrays_unit {
     /// вычисление суммы a1 - a2 + a3 - ... + (-1)^(n+1) * an 
     /// бросает исключение IllegalArgumentException
-    public static double summation_with_different_signs(double[] arr) throws IllegalArgumentException {
+    public static double summation_with_different_signs(double[] arr) {
 
         if (arr == null) throw new IllegalArgumentException("Массив не должен быть null");
 
@@ -24,7 +28,7 @@ public class arrays_unit {
 
     /// заполняет массив arr случайными числами в диапазоне от min до max
     /// бросает исключение IllegalArgumentException
-    public static void fill_array(double[] arr, double min, double max) throws IllegalArgumentException {
+    public static void fill_array(double[] arr, double min, double max) {
         if (arr == null) throw new IllegalArgumentException("Массив не должен быть null");
         if (min > max) throw new IllegalArgumentException("min не может быть больше max");
 
@@ -52,7 +56,7 @@ public class arrays_unit {
     } 
 
 
-    /// записывает массив в файл
+    /// записывает массив arr в текстовый файл file_name
     /// бросает исключение IOException
     public static void array_to_file(double[] arr, String file_name) throws IOException {
         if (arr == null) throw new IllegalArgumentException("Массив не должен быть null");
@@ -63,8 +67,26 @@ public class arrays_unit {
                 out.printf("%.3f ", arr[i]);
             }
         }
+    }
 
 
+    /// читает массив из текстового файла file_name
+    /// бросает исключение IOException
+    public static double[] array_from_file(String file_name) throws IOException {
+        if (file_name == null) throw new IllegalArgumentException("Имя файла не должно быть null");
+
+        List<Double> list = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File(file_name))) {
+            while (sc.hasNextDouble()) {
+                list.add(sc.nextDouble());
+            }
+        }
+
+        double[] arr = new double[list.size()];
+        for (int i = 0; i < list.size(); i++) {
+            arr[i] = list.get(i);
+        }
+        return arr;
     }
 }
 
