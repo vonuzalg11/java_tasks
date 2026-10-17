@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class arrays {
     public static void main(String[] args) {
-        try (Scanner sc = new Scanner(System.in)) {    // 
+        // не обязательно использовать try-with-resources для Scanner
+        try (Scanner sc = new Scanner(System.in)) {    
             System.out.print("Введите n: ");
             int n = 0;
             try {

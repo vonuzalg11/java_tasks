@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class first_task {
     public static void main(String[] args) {
+        // не обязательно использовать try-with-resources для Scanner
         try (Scanner sc = new Scanner(System.in)) {
             System.out.print("Введите число: ");
             int n = 0;

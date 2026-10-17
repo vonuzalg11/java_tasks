@@ -1,4 +1,7 @@
 // Глазунов Юрий, ИВТ-25
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class arrays_unit {
     /// вычисление суммы a1 - a2 + a3 - ... + (-1)^(n+1) * an 
@@ -47,5 +50,22 @@ public class arrays_unit {
         }
         System.out.println();
     } 
+
+
+    /// записывает массив в файл
+    /// бросает исключение IOException
+    public static void array_to_file(double[] arr, String file_name) throws IOException {
+        if (arr == null) throw new IllegalArgumentException("Массив не должен быть null");
+        if (file_name == null) throw new IllegalArgumentException("Имя файла не должно быть null");
+
+        try(PrintWriter out = new PrintWriter(new FileWriter(file_name))) {
+            for(int i = 0; i < arr.length; i++) {
+                out.printf("%.3f ", arr[i]);
+            }
+        }
+
+
+    }
 }
+
 
