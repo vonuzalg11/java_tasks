@@ -70,8 +70,9 @@ public class arrays_unit {
 
 
     /// читает массив из текстового файла file_name
+    /// возвращает list типа List<Double> 
     /// бросает исключение IOException
-    public static double[] array_from_file(String file_name) throws IOException {
+    public static List<Double> list_from_file(String file_name) throws IOException {
         if (file_name == null) throw new IllegalArgumentException("Имя файла не должно быть null");
 
         List<Double> list = new ArrayList<>();
@@ -80,13 +81,31 @@ public class arrays_unit {
                 list.add(sc.nextDouble());
             }
         }
+        return list;
+    }
 
-        double[] arr = new double[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            arr[i] = list.get(i);
+
+    /// читает массив из текстового файла file_name
+    /// возвращает массив arr
+    /// бросает исключение IOException
+    public static double[] array_from_file(String file_name) throws IOException {
+        if (file_name == null) throw new IllegalArgumentException("Имя файла не должно быть null");
+
+        // считаем количество чисел
+        int count = 0;
+        try (Scanner sc = new Scanner(new File(file_name))) {
+            while (sc.hasNextDouble()) {
+                sc.nextDouble();
+                count++;
+            }
+        }
+        
+        double[] arr = new double[count];
+        try (Scanner sc = new Scanner(new File(file_name))) {
+            for (int i = 0; i < count; i++) {
+                arr[i] = sc.nextDouble();
+            }
         }
         return arr;
     }
 }
-
-
