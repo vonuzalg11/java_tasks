@@ -1,5 +1,4 @@
 // Глазунов Юрий, ИВТ-25
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.File;
@@ -62,7 +61,7 @@ public class arrays_unit {
         if (arr == null) throw new IllegalArgumentException("Массив не должен быть null");
         if (file_name == null) throw new IllegalArgumentException("Имя файла не должно быть null");
 
-        try(PrintWriter out = new PrintWriter(new FileWriter(file_name))) {
+        try(PrintWriter out = new PrintWriter(file_name)) {
             for(int i = 0; i < arr.length; i++) {
                 out.printf("%.3f ", arr[i]);
             }
