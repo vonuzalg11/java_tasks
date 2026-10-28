@@ -75,7 +75,7 @@ public class arrays_unit {
     public static List<Double> list_from_file(String file_name) throws IOException {
         if (file_name == null) throw new IllegalArgumentException("Имя файла не должно быть null");
 
-        List<Double> list = new ArrayList<>();
+        List<Double> list = new ArrayList<>();    // List - более общий тип данных чем ArrayList (класс интерфейс)
         try (Scanner sc = new Scanner(new File(file_name))) {
             while (sc.hasNextDouble()) {
                 list.add(sc.nextDouble());

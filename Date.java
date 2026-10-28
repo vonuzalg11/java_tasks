@@ -76,6 +76,7 @@ public class Date {
     }
 
     // опеределяет високосный год year или нет
+    // 
     private static boolean isLeapYear(int year) {
         if (year % 400 == 0)
             return true;
