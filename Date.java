@@ -1,17 +1,7 @@
 public class Date {
-    private int day, month, year;
-
-    // конструктор (метод, инициализирующий объект)
-    // бросает исключение IllegalArgumentException
-    public Date(int day1, int month1, int year1) {
-        if ((month1 < 1) || (month1 > 12))
-            throw new IllegalArgumentException("Данные некорректны");
-        if ((day1 < 1) || (day1 > daysInMonth(year1, month1)))
-            throw new IllegalArgumentException("Данные некорректны");
-        day = day1;
-        month = month1;
-        year = year1;
-    }
+    private byte day; 
+    private byte month; 
+    private short year;
 
     // конструктор (метод, инициализирующий объект)
     public Date() {
@@ -20,9 +10,17 @@ public class Date {
         year = 2000;
     }
 
+    // конструктор
+    public Date(byte day1, byte month1, short year1) {
+        this();                 // day = 1, month = 1, year = 2000
+        setYear(year1);
+        setMonth(month1);
+        setDay(day1);
+    }
+
     // сеттер для дня
     // бросает исключение IllegalArgumentException
-    public void setDay(int day1) {
+    public void setDay(byte day1) {
         if ((day1 < 1) || (day1 > daysInMonth(year, month)))
             throw new IllegalArgumentException("Данные некорректны");
         day = day1;
@@ -30,7 +28,7 @@ public class Date {
 
     // сеттер для месяца
     // бросает исключение IllegalArgumentException
-    public void setMonth(int month1) {
+    public void setMonth(byte month1) {
         if ((month1 < 1) || (month1 > 12))
             throw new IllegalArgumentException("Данные некорректны");
         if (day > daysInMonth(year, month1))
@@ -40,7 +38,7 @@ public class Date {
 
     // сеттер для года
     // бросает исключение IllegalArgumentException
-    public void setYear(int year1) {
+    public void setYear(short year1) {
         if (day > daysInMonth(year1, month))
             throw new IllegalArgumentException("Данные некорректны");
         year = year1;
@@ -62,7 +60,7 @@ public class Date {
     }
 
     // определяет сколько дней в месяце month года year
-    private static int daysInMonth(int year, int month) {
+    private static byte daysInMonth(short year, byte month) {
         if (month == 2) {
             if (isLeapYear(year))
                 return 29;
@@ -76,8 +74,9 @@ public class Date {
     }
 
     // опеределяет високосный год year или нет
-    // 
-    private static boolean isLeapYear(int year) {
+    // Високосный год бывает каждые 4 года. Исключение: если год оканчивается на 00, 
+    // то он не високосный (кроме случаев, когда он нацело делится на 400).
+    private static boolean isLeapYear(short year) {
         if (year % 400 == 0)
             return true;
         else if (year % 100 == 0)
